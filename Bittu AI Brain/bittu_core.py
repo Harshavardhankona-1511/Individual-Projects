@@ -1,6 +1,7 @@
 from google import genai
 
 # 1. Setup the API Key
+my_api_key = "TODO: paste your Gemini API key here"
 client = genai.Client(api_key=my_api_key)
 
 print("Booting up BITTU...\n")
