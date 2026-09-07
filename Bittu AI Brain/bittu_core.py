@@ -1,7 +1,6 @@
 from google import genai
 
 # 1. Setup the API Key
-my_api_key = "AQ.Ab8RN6JRZlW6dZI1sMK85tRXpP8wHS0VGQow60be3iHyMk3QIQ"
 client = genai.Client(api_key=my_api_key)
 
 print("Booting up BITTU...\n")
