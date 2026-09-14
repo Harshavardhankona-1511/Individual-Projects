@@ -1,0 +1,55 @@
+import speech_recognition as sr
+import pyttsx3
+
+engine = pyttsx3.init()
+engine.setProperty('rate', 175)
+
+def speak(text):
+    print(f"Bittu: {text}")
+    engine.say(text)
+    engine.runAndWait()
+
+def listen():
+    recognizer = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        
+        # This prevents background noise from keeping the microphone open forever
+        recognizer.adjust_for_ambient_noise(source, duration=0.5)
+        
+        try:
+            # timeout=5 limits how long it waits for you to start speaking
+            # phrase_time_limit=5 limits how long you can speak in one breath
+            audio = recognizer.listen(source, timeout=5, phrase_time_limit=5)
+            
+            # Convert audio to text
+            command = recognizer.recognize_google(audio).lower()
+            print(f"You said: {command}")
+            return command
+            
+        # Catches the error smoothly if you mumble or stay silent
+        except sr.UnknownValueError:
+            return ""
+        # Catches network errors
+        except sr.RequestError:
+            speak("I'm having trouble connecting to the network.")
+            return ""
+        except sr.WaitTimeoutError:
+            return ""
+
+# Main Loop
+if __name__ == "__main__":
+    speak("System online. I am ready.")
+    
+    while True:
+        command = listen()
+        
+        if "hello" in command:
+            speak("Hello! How can I help you today?")
+            
+        elif "time" in command:
+            speak("I can check the time for you.")
+            
+        elif "stop" in command or "exit" in command:
+            speak("Shutting down. Goodbye!")
+            break
