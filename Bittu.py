@@ -7,7 +7,6 @@ from google.genai import types
 # 1. SETUP AI BRAIN (GEMINI)
 # ==========================================
 # Replace 'YOUR_API_KEY_HERE' with your actual Gemini API key from Google AI Studio
-client = genai.Client(api_key="AQ.Ab8RN6IbannIlwMXdQ2X5SBXueB62hEPnrD3bfOOrNUszqh4Ew")
 
 # Initialize the model and give Bittu his personality!
 chat = client.chats.create(
